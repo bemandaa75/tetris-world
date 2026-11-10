@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>TETRIS – Letter Box</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="slide7.css?v=4">
+</head>
+
+<body>
+
+    <!-- LETTER BOX (full layar) | background: bg/bg7 -->
+    <main class="screen" id="letterbox" data-bg="bg7">
+        <span class="sp s1">✦</span><span class="sp s2">✦</span><span class="sp s3">✦</span><span class="sp s4">✦</span>
+
+        <div class="wrap">
+            <h1 class="ttl"><span>YOU HAVE</span><span>A NEW MESSAGE!</span></h1>
+
+            <div class="stage">
+                <div class="env" id="env">
+                    <i class="wing l"></i><i class="wing r"></i>
+                    <div class="back"></div>
+                    <div class="paper" id="paper"><b>♥</b></div>
+                    <div class="front"></div>
+                    <div class="flap"></div>
+                    <div class="seal">♥</div>
+                </div>
+            </div>
+
+            <button class="btn" id="open">OPEN LETTER ♡</button>
+            <button class="btn y" id="nextbtn" style="display:none">NEXT ▶</button>
+        </div>
+
+        <!-- kartu ucapan -->
+        <div class="overlay" id="ov">
+            <div class="card">
+                <button class="x" id="x" aria-label="Tutup">✕</button>
+                <div class="tape"></div>
+                <h2 id="ctitle"></h2>
+                <div class="rule"></div>
+                <div class="body" id="cbody"></div>
+                <p class="from" id="cfrom"></p>
+                <button class="btn y" id="cnext">NEXT ▶</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="data.js"></script>
+    <script src="slide7.js?v=4"></script>
+</body>
+
+</html>

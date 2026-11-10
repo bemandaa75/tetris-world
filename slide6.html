@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>TETRIS – Main Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="slide6.css?v=6">
+</head>
+
+<body>
+
+    <!-- GAME TETRIS (full layar) | background: bg/bg6 -->
+    <main class="screen" id="game" data-bg="bg6">
+        <div class="wrap">
+
+            <div class="stage">
+                <div class="frame">
+                    <canvas id="board" width="480" height="600"></canvas>
+                    <div class="ov" id="ov">
+                        <h2 id="ovt">TETRIS</h2>
+                        <p id="ovp">Susun balok sampai satu baris penuh!</p>
+                        <button class="btn" id="ovb">MULAI ▶</button>
+                        <button class="btn y" id="ovn" style="display:none">LANJUT ▶</button>
+                    </div>
+                </div>
+
+                <div class="side">
+                    <div class="box"><span>NEXT</span><canvas id="next" width="120" height="120"></canvas></div>
+                    <div class="box"><span>TARGET</span><b id="ln">0 / 5</b>
+                        <div class="bar"><i id="bar"></i></div>
+                    </div>
+                    <button class="next" id="nextbtn">NEXT ▶</button>
+                </div>
+            </div>
+
+            <div class="pad" id="pad">
+                <button data-act="rot" aria-label="Putar">⟳</button>
+                <button data-act="left" aria-label="Kiri">◀</button>
+                <button data-act="down" aria-label="Turun">▼</button>
+                <button data-act="right" aria-label="Kanan">▶</button>
+                <button data-act="drop" aria-label="Jatuhkan">⤓</button>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="slide6.js?v=6"></script>
+</body>
+
+</html>

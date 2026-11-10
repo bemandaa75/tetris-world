@@ -1,0 +1,285 @@
+/* SLIDE 5 — ALBUM FOTO PER ACARA */
+:root {
+    --ink: #1a1a5e;
+    --blue: #1b6bff;
+    --pink: #ff3fa4;
+    --pink2: #ff79c6
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0
+}
+
+html,
+body {
+    height: 100%
+}
+
+body {
+    font-family: Nunito, system-ui, sans-serif;
+    background: var(--blue);
+    overflow: hidden
+}
+
+.screen {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fade .4s;
+    padding: max(14px, env(safe-area-inset-top)) 14px max(14px, env(safe-area-inset-bottom));
+    background: linear-gradient(180deg, #6aa6ff 0%, #a98bff 60%, #e7b8ff 100%) center bottom/cover no-repeat
+}
+
+@keyframes fade {
+    from {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+.wrap {
+    width: 100%;
+    max-width: 1040px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(12px, 2.4vh, 22px);
+    padding: 16px 10px 20px
+}
+
+/* ===== panel album ===== */
+.board {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
+    display: flex;
+    background: linear-gradient(135deg, #f6dcff, #ffe4f7 55%, #e4dcff);
+    border: 5px solid #6c4ae8;
+    border-radius: 22px;
+    box-shadow: inset 0 0 0 4px #fff, 0 0 0 4px var(--ink), 0 10px 0 4px var(--ink);
+    animation: rise .5s cubic-bezier(.3, 1.4, .5, 1) both
+}
+
+@keyframes rise {
+    from {
+        transform: translateY(30px) scale(.95);
+        opacity: 0
+    }
+
+    to {
+        transform: none;
+        opacity: 1
+    }
+}
+
+.scroll {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: clamp(18px, 3vw, 34px) clamp(14px, 3vw, 34px) 40px;
+    scrollbar-width: thin;
+    scrollbar-color: #8a6bff transparent;
+    -webkit-overflow-scrolling: touch
+}
+
+.cam {
+    position: absolute;
+    left: -14px;
+    bottom: -18px;
+    font-size: clamp(40px, 7vw, 64px);
+    filter: drop-shadow(3px 4px 0 var(--ink));
+    transform: rotate(-8deg);
+    z-index: 3;
+    pointer-events: none
+}
+
+/* ===== foto polaroid (jumlah otomatis, tinggi mengikuti foto) ===== */
+.photos {
+    column-count: 4;
+    column-gap: clamp(12px, 2vw, 22px)
+}
+
+@media(max-width:900px) {
+    .photos {
+        column-count: 3
+    }
+}
+
+@media(max-width:620px) {
+    .photos {
+        column-count: 2
+    }
+}
+
+.pl {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    break-inside: avoid;
+    margin: 0 0 clamp(14px, 2.4vw, 24px);
+    background: #fff;
+    border: 3px solid var(--ink);
+    border-radius: 6px;
+    padding: clamp(5px, 1vw, 9px) clamp(5px, 1vw, 9px) clamp(16px, 2.6vw, 26px);
+    box-shadow: 0 5px 0 rgba(26, 26, 94, .55);
+    cursor: zoom-in;
+    transform: rotate(var(--r, 0deg));
+    transition: transform .2s;
+    animation: pop .5s cubic-bezier(.3, 1.5, .5, 1) both;
+    -webkit-tap-highlight-color: transparent
+}
+
+.pl:hover {
+    transform: rotate(0) scale(1.05);
+    z-index: 5
+}
+
+@keyframes pop {
+    from {
+        transform: scale(.6) rotate(var(--r, 0deg));
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+.pl img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 3px
+}
+
+.pl .ph {
+    aspect-ratio: 4/3;
+    border-radius: 3px;
+    background: linear-gradient(135deg, #7a3cff, #ff3fa4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(26px, 5vw, 44px);
+    color: rgba(255, 255, 255, .8)
+}
+
+.pl.t::before {
+    content: "";
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    width: clamp(36px, 6vw, 56px);
+    height: clamp(14px, 2.2vw, 20px);
+    transform: translateX(-50%) rotate(var(--tr, -6deg));
+    background: repeating-linear-gradient(45deg, #ff79c6 0 7px, #ffd0ec 7px 14px);
+    border: 2px solid var(--ink);
+    border-radius: 3px;
+    z-index: 2
+}
+
+/* ===== tombol kembali ===== */
+.back {
+    position: relative;
+    top: 18px;
+    flex: none;
+    font: 900 clamp(10px, 1.8vw, 13px) Nunito, sans-serif;
+    letter-spacing: .06em;
+    color: #fff;
+    text-shadow: 0 1px 0 #a0206f;
+    background: linear-gradient(180deg, var(--pink2), var(--pink));
+    border: 3px solid #ffd0ec;
+    border-radius: 999px;
+    padding: .45em 1.3em;
+    box-shadow: 0 0 0 3px #b3237f, 0 4px 0 3px #7d1658;
+    cursor: pointer;
+    transition: transform .1s, box-shadow .1s
+}
+
+.back:hover {
+    filter: brightness(1.08)
+}
+
+.back:active {
+    transform: translateY(3px);
+    box-shadow: 0 0 0 3px #b3237f, 0 1px 0 3px #7d1658
+}
+
+/* ===== foto diperbesar ===== */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    background: rgba(20, 18, 58, .88);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    cursor: zoom-out
+}
+
+.lightbox.on {
+    display: flex;
+    animation: fade .2s
+}
+
+.lbframe {
+    background: #fff;
+    border: 4px solid var(--ink);
+    border-radius: 8px;
+    padding: 10px 10px 30px;
+    box-shadow: 0 8px 0 rgba(0, 0, 0, .4);
+    max-width: 96vw;
+    max-height: 92vh;
+    display: flex
+}
+
+.lbframe img {
+    display: block;
+    max-width: 100%;
+    max-height: calc(92vh - 60px);
+    border-radius: 3px;
+    object-fit: contain
+}
+
+/* ===== tombol silang (kembali) ===== */
+.x {
+    position: absolute;
+    top: -18px;
+    right: -14px;
+    width: clamp(38px, 5vw, 48px);
+    height: clamp(38px, 5vw, 48px);
+    border-radius: 50%;
+    border: 4px solid var(--ink);
+    background: linear-gradient(180deg, var(--pink2), var(--pink));
+    color: #fff;
+    font: 900 clamp(17px, 2.6vw, 23px) Nunito, sans-serif;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 var(--ink);
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .1s
+}
+
+.x:hover {
+    filter: brightness(1.1);
+    transform: scale(1.08)
+}
+
+.x:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 var(--ink)
+}

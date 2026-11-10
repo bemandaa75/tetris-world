@@ -1,0 +1,331 @@
+/* SLIDE 4 — OUR JOURNEY (PETA) */
+:root {
+    --ink: #1a1a5e;
+    --blue: #1b6bff;
+    --pink: #ff3fa4;
+    --pink2: #ff79c6;
+    --yellow: #ffd400
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0
+}
+
+html,
+body {
+    height: 100%
+}
+
+body {
+    font-family: Nunito, system-ui, sans-serif;
+    background: var(--blue);
+    overflow: hidden
+}
+
+.screen {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fade .4s;
+    padding: max(14px, env(safe-area-inset-top)) 14px max(14px, env(safe-area-inset-bottom));
+    background: linear-gradient(180deg, #5aa0ff 0%, #a98bff 65%, #e7b8ff 100%) center bottom/cover no-repeat
+}
+
+@keyframes fade {
+    from {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+.wrap {
+    width: 100%;
+    max-width: 1040px;
+    max-height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(8px, 2vh, 20px);
+    padding: 8px 6px 12px
+}
+
+/* ===== banner ===== */
+.banner {
+    position: relative;
+    margin-top: 4px;
+    animation: drop .6s cubic-bezier(.3, 1.5, .5, 1) both
+}
+
+@keyframes drop {
+    from {
+        transform: translateY(-40px);
+        opacity: 0
+    }
+
+    to {
+        transform: none;
+        opacity: 1
+    }
+}
+
+.ribbon {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    background: linear-gradient(180deg, #fff0a0, #ffd34d);
+    border: 4px solid var(--ink);
+    border-radius: 14px;
+    padding: clamp(8px, 1.6vh, 14px) clamp(26px, 5vw, 56px);
+    box-shadow: 0 6px 0 var(--ink)
+}
+
+.ribbon h1 {
+    font: 400 clamp(24px, 5.6vw, 52px)/1 "Lilita One", Nunito, sans-serif;
+    color: #ff3fa4;
+    -webkit-text-stroke: .1em var(--ink);
+    paint-order: stroke fill;
+    text-shadow: 0 .06em 0 var(--ink)
+}
+
+.ribbon .hh {
+    color: #ff79c6;
+    font-size: .7em;
+    vertical-align: .12em
+}
+
+.ribbon p {
+    font-weight: 900;
+    font-size: clamp(11px, 2vw, 16px);
+    color: var(--ink);
+    margin-top: 4px
+}
+
+.tail {
+    position: absolute;
+    top: 14px;
+    width: clamp(40px, 8vw, 80px);
+    height: calc(100% - 8px);
+    background: #ff9d00;
+    border: 4px solid var(--ink);
+    z-index: 1
+}
+
+.tail.l {
+    left: calc(-1 * clamp(26px, 5vw, 52px));
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 22% 50%)
+}
+
+.tail.r {
+    right: calc(-1 * clamp(26px, 5vw, 52px));
+    clip-path: polygon(0 0, 100% 0, 78% 50%, 100% 100%, 0 100%)
+}
+
+/* ===== peta ===== */
+.map {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/8;
+    max-height: 60vh
+}
+
+.path {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible
+}
+
+.path path {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 5;
+    stroke-dasharray: 3 12;
+    stroke-linecap: round;
+    filter: drop-shadow(0 2px 0 var(--ink));
+    animation: dash 1.5s linear infinite
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: -30
+    }
+}
+
+.isl {
+    position: absolute;
+    transform: translateX(-50%);
+    width: clamp(88px, 15vw, 160px);
+    cursor: pointer;
+    text-align: center;
+    animation: float 3s ease-in-out infinite;
+    -webkit-tap-highlight-color: transparent
+}
+
+.isl:nth-child(odd) {
+    animation-delay: -1.2s
+}
+
+@keyframes float {
+    50% {
+        margin-top: -8px
+    }
+}
+
+.isl:hover .land {
+    transform: scale(1.07)
+}
+
+.land {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1/.95;
+    transition: transform .2s
+}
+
+.top {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 34%;
+    background: linear-gradient(180deg, #8dff5a, #3fc23a);
+    border: 4px solid var(--ink);
+    border-radius: 50%/60%;
+    z-index: 2
+}
+
+/* foto/logo acara di atas pulau */
+.logo {
+    position: absolute;
+    left: 50%;
+    top: -2%;
+    width: 62%;
+    aspect-ratio: 1;
+    transform: translateX(-50%);
+    z-index: 4;
+    border-radius: 50%;
+    border: 4px solid var(--ink);
+    background: #fff center/cover no-repeat;
+    box-shadow: 0 4px 0 var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(20px, 4vw, 38px);
+    overflow: hidden
+}
+
+.logo.has span {
+    display: none
+}
+
+.base {
+    position: absolute;
+    left: 6%;
+    right: 6%;
+    top: 64%;
+    height: 36%;
+    background: linear-gradient(180deg, #b9722f, #7a4418);
+    border: 4px solid var(--ink);
+    clip-path: polygon(0 0, 100% 0, 78% 100%, 22% 100%);
+    z-index: 1
+}
+
+.lab {
+    display: inline-block;
+    margin-top: 2px;
+    background: #fff;
+    color: var(--ink);
+    border: 3px solid var(--ink);
+    border-radius: 10px;
+    padding: 4px 8px;
+    font-weight: 900;
+    font-size: clamp(10px, 1.7vw, 15px);
+    line-height: 1.15;
+    box-shadow: 0 3px 0 var(--ink)
+}
+
+/* ===== tombol kembali ===== */
+.back {
+    flex: none;
+    font: 900 clamp(13px, 2.6vw, 18px) Nunito, sans-serif;
+    letter-spacing: .06em;
+    color: #fff;
+    text-shadow: 0 2px 0 #a0206f;
+    background: linear-gradient(180deg, var(--pink2), var(--pink));
+    border: 4px solid #ffd0ec;
+    border-radius: 999px;
+    padding: .5em 1.5em;
+    box-shadow: 0 0 0 4px #b3237f, 0 6px 0 4px #7d1658;
+    cursor: pointer;
+    transition: transform .1s, box-shadow .1s
+}
+
+.back:hover {
+    filter: brightness(1.08)
+}
+
+.back:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 0 4px #b3237f, 0 2px 0 4px #7d1658
+}
+
+/* ===== HP: pulau berjajar ke bawah ===== */
+@media(max-width:700px) {
+    .map {
+        aspect-ratio: auto;
+        max-height: none;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        padding: 6px 0 10px
+    }
+
+    .path {
+        display: none
+    }
+
+    .map::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 20px;
+        bottom: 20px;
+        border-left: 5px dashed #fff;
+        opacity: .9;
+        filter: drop-shadow(2px 0 0 var(--ink))
+    }
+
+    .isl {
+        position: relative;
+        left: auto !important;
+        top: auto !important;
+        transform: none;
+        width: 130px
+    }
+
+    .isl:nth-child(even) {
+        align-self: flex-start;
+        margin-left: 6%
+    }
+
+    .isl:nth-child(odd) {
+        align-self: flex-end;
+        margin-right: 6%
+    }
+
+    .isl:nth-child(n) {
+        z-index: 1
+    }
+}

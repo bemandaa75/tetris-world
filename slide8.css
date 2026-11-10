@@ -1,0 +1,212 @@
+/* SLIDE 8 — CLOSING SCREEN */
+:root {
+    --ink: #1a1a5e;
+    --text: #1c2370;
+    --blue: #1b6bff;
+    --purple: #7a1fff;
+    --pink: #ff3fa4
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0
+}
+
+html,
+body {
+    height: 100%
+}
+
+body {
+    font-family: Nunito, system-ui, sans-serif;
+    background: var(--purple);
+    overflow: hidden
+}
+
+.screen {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fade .5s;
+    padding: max(16px, env(safe-area-inset-top)) 12px max(16px, env(safe-area-inset-bottom));
+    background: linear-gradient(180deg, #7b6cff 0%, #c27bff 55%, #ffb3e6 100%) center bottom/cover no-repeat
+}
+
+@keyframes fade {
+    from {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: min(3.4vh, 3vw);
+    width: 100%;
+    max-width: 96vw;
+    margin-bottom: 4vh
+}
+
+/* ===== judul miring + huruf bergerak ===== */
+.title {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: .3em;
+    font: 400 min(7.2vw, 13vh)/1.05 "Lilita One", "Baloo 2", system-ui, sans-serif;
+    letter-spacing: .02em;
+    color: #ffd83a;
+    transform: rotate(-4deg);
+    animation: pop .8s cubic-bezier(.3, 1.6, .5, 1) both
+}
+
+.title .row {
+    display: inline-block;
+    white-space: nowrap
+}
+
+.title .ch {
+    display: inline-block;
+    white-space: pre;
+    paint-order: stroke fill;
+    -webkit-text-stroke: .14em var(--ink);
+    text-shadow: 0 .07em 0 var(--ink);
+    transform-origin: 50% 88%
+}
+
+@keyframes jig {
+
+    0%,
+    55%,
+    100% {
+        transform: translateY(0) rotate(0) scale(1)
+    }
+
+    12% {
+        transform: translateY(-.16em) rotate(-5deg) scale(1.06, .96)
+    }
+
+    24% {
+        transform: translateY(0) rotate(0) scale(.96, 1.05)
+    }
+
+    36% {
+        transform: translateY(-.07em) rotate(4deg) scale(1)
+    }
+}
+
+@keyframes pop {
+    from {
+        transform: rotate(-4deg) scale(.4);
+        opacity: 0
+    }
+
+    to {
+        transform: rotate(-4deg) scale(1);
+        opacity: 1
+    }
+}
+
+/* ===== keterangan ===== */
+.sub {
+    font-weight: 900;
+    font-size: min(3.8vw, 4.6vh);
+    line-height: 1.55;
+    color: var(--text);
+    text-shadow: 0 0 6px #fff, 0 0 12px rgba(255, 255, 255, .95)
+}
+
+.heart {
+    color: #b1349f;
+    font-size: 1.1em
+}
+
+/* ===== tombol ===== */
+.btn {
+    font-family: "Lilita One", system-ui, sans-serif;
+    font-size: min(5.2vw, 6.4vh);
+    letter-spacing: .04em;
+    color: #fff;
+    text-shadow: 0 .05em 0 #a35a00;
+    background: linear-gradient(180deg, #ffe46a, #ffb300);
+    border: .1em solid #fff3b8;
+    border-radius: 999px;
+    padding: .24em 1.1em;
+    box-shadow: 0 0 0 .1em #c77a00, 0 .2em 0 .1em #8a5200, 0 .35em .55em rgba(20, 18, 90, .35);
+    cursor: pointer;
+    transition: transform .1s, box-shadow .1s;
+    animation: bob 1.6s ease-in-out infinite
+}
+
+.btn .tri {
+    margin-left: .3em;
+    font-size: .8em;
+    -webkit-text-stroke: 1px #fff
+}
+
+.btn:hover {
+    filter: brightness(1.08)
+}
+
+.btn:active {
+    animation: none;
+    transform: translateY(.12em);
+    box-shadow: 0 0 0 .1em #c77a00, 0 .04em 0 .1em #8a5200
+}
+
+@keyframes bob {
+    50% {
+        transform: translateY(-5px)
+    }
+}
+
+/* ===== konfeti balok tetris ===== */
+.confetti {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1
+}
+
+.cf {
+    position: absolute;
+    top: -30px;
+    border: 3px solid var(--ink);
+    border-radius: 4px;
+    animation: fall linear infinite;
+    opacity: .95
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(calc(100dvh + 60px)) rotate(var(--rot, 360deg))
+    }
+}
+
+@media(max-width:700px) {
+    .title {
+        font-size: min(14vw, 10vh)
+    }
+
+    .sub {
+        font-size: min(5vw, 3.4vh)
+    }
+
+    .btn {
+        font-size: min(7vw, 5.4vh)
+    }
+}

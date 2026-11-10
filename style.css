@@ -1,0 +1,197 @@
+/* ===== WARNA (ubah di sini) ===== */
+:root {
+  --ink: #1a1a5e;
+  /* garis tepi tulisan */
+  --text: #1c2370;
+  /* warna teks keterangan */
+  --pink: #ff3fa4;
+  --pink2: #ff79c6;
+  --yellow: #ffd400;
+  --cyan: #00d1ff;
+  --blue: #1b6bff;
+  --purple: #7a1fff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0
+}
+
+html,
+body {
+  height: 100%
+}
+
+body {
+  font-family: Nunito, system-ui, sans-serif;
+  background: var(--blue);
+  overflow: hidden
+}
+
+/* ===== layar penuh ===== */
+.screen {
+  display: flex;
+  animation: fade .4s;
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  align-items: center;
+  justify-content: center;
+  padding: max(16px, env(safe-area-inset-top)) 12px max(16px, env(safe-area-inset-bottom));
+  background: linear-gradient(180deg, var(--cyan) 0%, var(--blue) 55%, var(--purple) 100%) center bottom/cover no-repeat
+}
+
+.content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: min(3.2vh, 3vw);
+  width: 100%;
+  max-width: 96vw;
+  margin-bottom: 4vh
+}
+
+@keyframes fade {
+  from {
+    opacity: 0
+  }
+
+  to {
+    opacity: 1
+  }
+}
+
+/* ===== judul (ukuran mengikuti lebar & tinggi layar) ===== */
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Lilita One", "Baloo 2", system-ui, sans-serif;
+  font-weight: 400;
+  letter-spacing: .02em;
+  line-height: 1;
+  animation: pop .7s cubic-bezier(.3, 1.6, .5, 1) both
+}
+
+.title .l1,
+.title .w {
+  paint-order: stroke fill;
+  -webkit-text-stroke: .14em var(--ink);
+  text-shadow: 0 .07em 0 var(--ink)
+}
+
+.title .l1 {
+  font-size: min(6.6vw, 10vh);
+  color: #e8f6ff;
+  margin-bottom: min(1.2vh, 1vw);
+  -webkit-text-stroke-width: .12em;
+  text-shadow: 0 .06em 0 var(--ink), 0 0 .4em rgba(120, 200, 255, .9)
+}
+
+.title .l2 {
+  display: flex;
+  justify-content: center;
+  gap: .28em;
+  white-space: nowrap;
+  font-size: min(10.8vw, 17vh)
+}
+
+.title .l2 .w {
+  display: inline-block
+}
+
+/* gerakan huruf: loncat + goyang, bergantian per huruf */
+.title .ch {
+  display: inline-block;
+  white-space: pre;
+  transform-origin: 50% 88%
+}
+
+@keyframes jig {
+
+  0%,
+  55%,
+  100% {
+    transform: translateY(0) rotate(0) scale(1)
+  }
+
+  12% {
+    transform: translateY(-.16em) rotate(-5deg) scale(1.06, .96)
+  }
+
+  24% {
+    transform: translateY(0) rotate(0) scale(.96, 1.05)
+  }
+
+  36% {
+    transform: translateY(-.07em) rotate(4deg) scale(1)
+  }
+}
+
+@keyframes pop {
+  from {
+    transform: scale(.5);
+    opacity: 0
+  }
+
+  to {
+    transform: none;
+    opacity: 1
+  }
+}
+
+/* ===== keterangan ===== */
+.sub {
+  font-weight: 800;
+  font-size: min(3.5vw, 3.9vh);
+  line-height: 1.5;
+  color: var(--text);
+  text-shadow: 0 0 6px #fff, 0 0 12px rgba(255, 255, 255, .95)
+}
+
+.heart {
+  color: #b1349f;
+  font-size: 1.1em
+}
+
+/* ===== tombol ===== */
+.btn {
+  font-family: "Lilita One", system-ui, sans-serif;
+  font-size: min(4vw, 4.5vh);
+  letter-spacing: .04em;
+  color: #fff;
+  text-shadow: 0 .05em 0 #a0206f;
+  background: linear-gradient(180deg, var(--pink2), var(--pink));
+  border: .1em solid #ffd0ec;
+  border-radius: 999px;
+  padding: .22em 1.1em;
+  box-shadow: 0 0 0 .1em #b3237f, 0 .2em 0 .1em #7d1658, 0 .35em .55em rgba(20, 18, 90, .35);
+  cursor: pointer;
+  transition: transform .1s, box-shadow .1s;
+  animation: bob 1.6s ease-in-out infinite
+}
+
+.btn .tri {
+  margin-left: .3em;
+  font-size: .8em;
+  -webkit-text-stroke: 1px #fff
+}
+
+.btn:hover {
+  filter: brightness(1.08)
+}
+
+.btn:active {
+  animation: none;
+  transform: translateY(.12em);
+  box-shadow: 0 0 0 .1em #b3237f, 0 .04em 0 .1em #7d1658
+}
+
+@keyframes bob {
+  50% {
+    transform: translateY(-5px)
+  }
+}

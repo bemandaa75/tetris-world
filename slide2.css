@@ -1,0 +1,327 @@
+/* SLIDE 2 — PLAYER COLLECTION */
+:root {
+  --ink: #1a1a5e;
+  --blue: #1b6bff
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0
+}
+
+html,
+body {
+  height: 100%
+}
+
+body {
+  font-family: Nunito, system-ui, sans-serif;
+  background: var(--blue);
+  overflow: hidden
+}
+
+.screen {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fade .4s
+}
+
+@keyframes fade {
+  from {
+    opacity: 0
+  }
+
+  to {
+    opacity: 1
+  }
+}
+
+/* =====================================================
+   PLAYER COLLECTION
+   ===================================================== */
+#collection {
+  background: linear-gradient(180deg, #6aa6ff 0%, #a98bff 60%, #e7b8ff 100%) center bottom/cover no-repeat;
+  padding: max(14px, env(safe-area-inset-top)) 14px max(14px, env(safe-area-inset-bottom))
+}
+
+.board {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #fff7fd, #ffeefb);
+  border: 5px solid #6c4ae8;
+  border-radius: 22px;
+  box-shadow: inset 0 0 0 4px #fff, 0 0 0 4px #1a1a5e, 0 10px 0 4px #1a1a5e;
+  padding: clamp(14px, 2.6vh, 26px) clamp(12px, 3vw, 34px)
+}
+
+.hint {
+  text-align: center;
+  font-weight: 800;
+  color: #1c2370;
+  font-size: clamp(14px, 2.7vw, 24px)
+}
+
+.hint .sp {
+  color: #ffb300;
+  text-shadow: 1px 1px 0 #c97a00;
+  margin: 0 .35em
+}
+
+.line {
+  height: 4px;
+  margin: 10px auto clamp(12px, 2.2vh, 22px);
+  width: min(80%, 640px);
+  border-radius: 4px;
+  background: linear-gradient(90deg, transparent, #ff3fa4, #7a3cff, #ff3fa4, transparent)
+}
+
+.scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 12px 8px 14px;
+  scrollbar-width: thin;
+  scrollbar-color: #8a6bff transparent;
+  -webkit-overflow-scrolling: touch
+}
+
+.lead {
+  display: flex;
+  justify-content: center;
+  margin-bottom: clamp(14px, 2.6vh, 24px)
+}
+
+.lead .card {
+  width: min(34%, 210px)
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(10px, 2.2vw, 22px)
+}
+
+.card {
+  position: relative;
+  aspect-ratio: 1/1.05;
+  border-radius: 16px;
+  cursor: pointer;
+  background: var(--g);
+  border: 4px solid #fff;
+  box-shadow: 0 0 0 3px var(--ring, #8f7bff), 0 6px 0 3px rgba(26, 26, 94, .55);
+  transition: transform .15s;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  background-size: cover;
+  background-position: center
+}
+
+.card:hover {
+  transform: translateY(-4px) scale(1.04)
+}
+
+.card:active {
+  transform: scale(.97)
+}
+
+.card svg {
+  position: absolute;
+  inset: 8% 6% 0 6%;
+  width: 88%;
+  height: 92%;
+  fill: #4d34b0;
+  filter: drop-shadow(0 3px 0 rgba(26, 26, 94, .25))
+}
+
+.card.has svg {
+  display: none
+}
+
+.card::after {
+  content: "✦";
+  position: absolute;
+  top: 4px;
+  right: 7px;
+  color: #fff;
+  font-size: 13px;
+  text-shadow: 0 0 6px #fff
+}
+
+.card .nm {
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  bottom: 6px;
+  background: #1a1a5e;
+  color: #ffd400;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: clamp(10px, 1.9vw, 16px);
+  padding: 4px 2px;
+  text-align: center;
+}
+
+/* warna kartu bergantian */
+.grid .card:nth-child(6n+1) {
+  --g: linear-gradient(135deg, #7fe0c2, #b8c4ff);
+  --ring: #34c9a0
+}
+
+.grid .card:nth-child(6n+2) {
+  --g: linear-gradient(135deg, #6fc4ff, #b79bff);
+  --ring: #3f8cff
+}
+
+.grid .card:nth-child(6n+3) {
+  --g: linear-gradient(135deg, #ffd45e, #d58bff);
+  --ring: #ffb300
+}
+
+.grid .card:nth-child(6n+4) {
+  --g: linear-gradient(135deg, #d79bff, #8fa8ff);
+  --ring: #a15cff
+}
+
+.grid .card:nth-child(6n+5) {
+  --g: linear-gradient(135deg, #b58cff, #6fb7ff);
+  --ring: #6c4ae8
+}
+
+.grid .card:nth-child(6n) {
+  --g: linear-gradient(135deg, #aee88f, #c4a6ff);
+  --ring: #59c23a
+}
+
+/* kartu kakak pendamping (beda sendiri) */
+.card.kakak {
+  --g: linear-gradient(135deg, #ffe27a, #ff9d2e);
+  --ring: #ff7a00;
+  border-color: #fff3b0;
+  box-shadow: 0 0 0 4px #ff7a00, 0 0 22px 4px rgba(255, 190, 40, .9), 0 6px 0 4px rgba(26, 26, 94, .6)
+}
+
+.card.kakak svg {
+  fill: #7a3a00
+}
+
+.card.kakak::after {
+  content: none
+}
+
+.card.kakak .crown {
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-6deg);
+  font-size: clamp(22px, 4vw, 36px);
+  z-index: 2;
+  filter: drop-shadow(0 2px 0 #1a1a5e)
+}
+
+.card.kakak .tagk {
+  position: absolute;
+  top: 22%;
+  left: -4px;
+  right: -4px;
+  display: none
+}
+
+.card.kakak .badge {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #ff4d00;
+  color: #fff;
+  font-weight: 800;
+  font-size: clamp(9px, 1.7vw, 14px);
+  text-align: center;
+  padding: 4px 2px;
+  letter-spacing: .03em;
+  border-top: 3px solid #1a1a5e
+}
+
+.card.kakak .nm {
+  bottom: 30px
+}
+
+/* tangan penunjuk */
+.hand {
+  position: fixed;
+  font-size: clamp(34px, 6vw, 56px);
+  z-index: 5;
+  pointer-events: none;
+  animation: tap 1s ease-in-out infinite;
+  filter: drop-shadow(2px 3px 0 #1a1a5e);
+  display: none
+}
+
+.hand i {
+  position: absolute;
+  top: -14px;
+  right: -18px;
+  font-size: .5em;
+  font-style: normal
+}
+
+.hand.on {
+  display: block
+}
+
+@keyframes tap {
+  50% {
+    transform: translate(-6px, -10px)
+  }
+}
+
+@media(max-width:760px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr)
+  }
+
+  .lead .card {
+    width: min(44%, 190px)
+  }
+}
+
+/* tombol NEXT */
+.scroll {
+  min-height: 0;
+  flex: 1 1 auto
+}
+
+.next {
+  flex: none;
+  align-self: center;
+  margin-top: clamp(8px, 1.6vh, 14px);
+  font: 900 clamp(14px, 2.6vw, 20px) Nunito, sans-serif;
+  letter-spacing: .06em;
+  color: #fff;
+  text-shadow: 0 2px 0 #a0206f;
+  background: linear-gradient(180deg, #ff79c6, #ff3fa4);
+  border: 4px solid #ffd0ec;
+  border-radius: 999px;
+  padding: .5em 1.6em;
+  box-shadow: 0 0 0 4px #b3237f, 0 6px 0 4px #7d1658;
+  cursor: pointer;
+  transition: transform .1s, box-shadow .1s
+}
+
+.next:hover {
+  filter: brightness(1.08)
+}
+
+.next:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 4px #b3237f, 0 2px 0 4px #7d1658
+}

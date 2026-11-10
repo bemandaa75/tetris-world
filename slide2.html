@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>TETRIS – Player Collection</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="slide2.css">
+</head>
+
+<body>
+
+  <!-- PLAYER COLLECTION (full layar) | background: bg/bg2 -->
+  <main class="screen" id="collection" data-bg="bg2">
+    <div class="board">
+      <p class="hint"><span class="sp">✦</span> Tap the character to see their profile! <span class="sp">✦</span></p>
+      <div class="line"></div>
+      <div class="scroll">
+        <div class="lead" id="lead"></div>
+        <div class="grid" id="players"></div>
+      </div>
+      <button class="next" id="next">NEXT ▶</button>
+    </div>
+    <div class="hand" id="hand">👆<i>✨</i></div>
+  </main>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="sil" viewBox="0 0 100 100">
+      <path d="M8 100C8 74 28 64 50 64s42 10 42 36z" />
+      <path d="M27 46C22 20 35 9 50 9s28 11 23 37c3 10-1 17-6 17H33c-5 0-9-7-6-17z" />
+      <text x="50" y="43" text-anchor="middle" font-size="26" font-weight="900" fill="#fff"
+        font-family="Nunito,sans-serif">?</text>
+      <text x="50" y="86" text-anchor="middle" font-size="15" font-weight="900" fill="#fff" fill-opacity=".55"
+        font-family="Nunito,sans-serif">?</text>
+    </symbol>
+  </svg>
+  <script src="data.js"></script>
+  <script src="slide2.js"></script>
+</body>
+
+</html>
