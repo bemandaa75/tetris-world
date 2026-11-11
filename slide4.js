@@ -27,15 +27,18 @@ function pic(el, base) {
 document.querySelectorAll("[data-bg]").forEach(function (w) { pic(w, "bg/" + w.dataset.bg); });
 
 /* posisi pulau di peta (persen) — ubah kalau mau geser */
-var POS = [[10, 12], [30, 34], [50, 18], [70, 38], [90, 10]];   /* [kiri%, atas%] */
+var POS = [[10, 12], [30, 34], [50, 18], [70, 38], [90, 10]];   /* laptop / HP landscape: [kiri%, atas%] */
+var POS_M = [[28, 0], [72, 14], [28, 35], [72, 49], [30, 70]];     /* HP dipegang tegak: [kiri%, atas%] */
 var FLAGS = ["#ff3fa4", "#ffd400", "#00d1ff", "#ff7a00", "#7a1fff"];  /* warna bendera */
 
 var map = document.getElementById("map");
 CHAPTERS.forEach(function (c, i) {
     var d = document.createElement("div");
     d.className = "isl";
-    d.style.left = POS[i % POS.length][0] + "%";
-    d.style.top = POS[i % POS.length][1] + "%";
+    d.style.setProperty("--dx", POS[i % POS.length][0] + "%");
+    d.style.setProperty("--dy", POS[i % POS.length][1] + "%");
+    d.style.setProperty("--mx", POS_M[i % POS_M.length][0] + "%");
+    d.style.setProperty("--my", POS_M[i % POS_M.length][1] + "%");
     d.style.setProperty("--fl", FLAGS[i % FLAGS.length]);
     d.innerHTML =
         '<div class="land"><div class="logo"><span>' + c.icon + '</span></div><div class="base"></div><div class="top"></div></div>' +
