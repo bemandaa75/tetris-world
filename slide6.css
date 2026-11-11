@@ -237,15 +237,21 @@ body {
 @media (pointer:coarse),
 (max-width:800px) {
     .pad {
-        display: flex
+        display: flex;
+        margin-top: clamp(10px, 2vh, 22px)
     }
 
+    /* jarak tombol ke papan: ubah angka ini untuk menurunkan/menaikkan tombol */
     .keys {
         display: none
     }
 
+    .wrap {
+        gap: clamp(36px, 5.5vh, 56px)
+    }
+
     #board {
-        height: min(calc(100dvh - 240px), calc((100vw - 150px) * 5 / 4), 600px)
+        height: min(calc(100dvh - 290px), calc((100vw - 150px) * 5 / 4), 600px)
     }
 }
 
